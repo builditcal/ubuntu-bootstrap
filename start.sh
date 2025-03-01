@@ -14,8 +14,12 @@ while [ $# -gt 0 ]; do
   shift
 done
 
+echo "*****************************************************"
+echo "Welcome to Ubuntu-Bootstrap"
+echo "The following will be installed"
 echo "debs: $debs"
 echo "flatpaks: $flatpaks"
+echo "*****************************************************"
 
 echo "*****************************************************"
 echo "Upgrading and Updating"
