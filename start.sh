@@ -21,6 +21,7 @@ echo "!! Welcome to Ubuntu-Bootstrap !!"
 echo "The following will be installed"
 echo "debs: $debs"
 echo "flatpaks: $flatpaks"
+echo "we will also be removing snap packages and snapd"
 echo "----------------------------------------------------"
 
 
@@ -63,7 +64,7 @@ echo "*****************************************************"
 mkdir $DOWNLOAD_PATH
 
 # INSTALL: VS CODE
-if [[ $debs =~ "vscode"]]; then
+if [[ $debs =~ "vscode "]]; then
   echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
   sudo apt-get install -yq wget gpg
   wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -76,19 +77,19 @@ if [[ $debs =~ "vscode"]]; then
 fi
 
 # INSTALL: Chrome
-if [[ $debs =~ "chrome"]]; then
+if [[ $debs =~ "chrome "]]; then
   wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O $DOWNLOAD_PATH/chrome.deb
   sudo apt install -yq $DOWNLOAD_PATH/chrome.deb
 fi
 
 # INSTALL: dbeaver
-if [[ $debs =~ "dbeaver"]]; then
+if [[ $debs =~ "dbeaver "]]; then
   wget -c https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -O $DOWNLOAD_PATH/dbeaver.deb
   sudo apt install -yq $DOWNLOAD_PATH/dbeaver.deb
 fi
 
 # INSTALL: docker
-if [[ $debs =~ "docker"]]; then
+if [[ $debs =~ "docker "]]; then
   for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
   sudo apt-get update
   sudo apt-get install -yq ca-certificates curl
@@ -117,12 +118,12 @@ if [ -n "$flatpaks" ]; then
   flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
   # FLATPAK INSTALL: bitwarden
-  if [[ $flatpaks =~ "bitwarden"]]; then
+  if [[ $flatpaks =~ "bitwarden "]]; then
     sudo flatpak install -y flathub com.bitwarden.desktop
   fi
 
   # FLATPAK INSTALL: cura
-  if [[ $flatpaks =~ "cura"]]; then
+  if [[ $flatpaks =~ "cura "]]; then
     sudo flatpak install -y flathub com.ultimaker.cura
   fi
 fi
