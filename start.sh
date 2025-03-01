@@ -13,7 +13,7 @@ sudo apt upgrade -yq
 echo "*****************************************************"
 echo "Removing Snaps and snapd"
 echo "*****************************************************"
-set -euo pipefail
+# set -euo pipefail
 
 MAX_TRIES=30
 
