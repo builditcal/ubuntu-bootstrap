@@ -3,16 +3,16 @@
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 
 
-echo("*****************************************************")
-echo("Upgrading and Updating")
-echo("*****************************************************")
+echo "*****************************************************"
+echo "Upgrading and Updating"
+echo "*****************************************************"
 sudo apt update
 sudo apt upgrade -yq
 
 
-echo("*****************************************************")
-echo("Removing Snaps and snapd")
-echo("*****************************************************")
+echo "*****************************************************"
+echo "Removing Snaps and snapd"
+echo "*****************************************************"
 set -euo pipefail
 
 MAX_TRIES=30
@@ -33,14 +33,14 @@ sudo apt-mark hold snapd
 sudo rm -rf /snap
 sudo rm -rf $HOME/snap
 
-echo("*****************************************************")
-echo("Snaps removed")
-echo("*****************************************************")
+echo "*****************************************************"
+echo "Snaps removed"
+echo "*****************************************************"
 
 
-echo("*****************************************************")
-echo("Installing essential deb applications")
-echo("*****************************************************")
+echo "*****************************************************"
+echo "Installing essential deb applications"
+echo "*****************************************************"
 
 mkdir $DOWNLOAD_PATH
 # VS CODE
@@ -79,9 +79,9 @@ sudo apt-get -yq install docker-ce docker-ce-cli containerd.io docker-buildx-plu
 
 sudo usermod -aG docker $USER
 
-echo("*****************************************************")
-echo("Installing flatpak applications")
-echo("*****************************************************")
+echo "*****************************************************"
+echo "Installing flatpak applications"
+echo "*****************************************************"
 sudo apt -yq install flatpak
 sudo apt install gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
