@@ -25,7 +25,7 @@ for try in $(seq 1 $MAX_TRIES); do
   fi
   echo "Attempt $try of $MAX_TRIES to remove $INSTALLED_SNAPS snaps."
 
-  snap list 2> /dev/null | grep -v ^Name |  awk '{ print $1 }'  | xargs -r -n1  snap remove || true
+  snap list 2> /dev/null | grep -v ^Name |  awk '{ print $1 }'  | xargs -r -n1  sudo snap remove || true
 done
 
 sudo apt autoremove --purge snapd
