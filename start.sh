@@ -14,8 +14,8 @@ while [ $# -gt 0 ]; do
   shift
 done
 
-echo $debs
-echo $flatpaks
+echo "debs: $debs"
+echo "flatpaks: $flatpaks"
 
 echo "*****************************************************"
 echo "Upgrading and Updating"
