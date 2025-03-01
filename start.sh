@@ -17,7 +17,7 @@ done
 clear 
 
 echo "\n\n----------------------------------------------------"
-echo "Welcome to Ubuntu-Bootstrap"
+echo "!! Welcome to Ubuntu-Bootstrap !!"
 echo "The following will be installed"
 echo "debs: $debs"
 echo "flatpaks: $flatpaks"
