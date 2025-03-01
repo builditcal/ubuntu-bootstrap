@@ -16,7 +16,7 @@ done
 
 clear 
 
-echo "\n\n----------------------------------------------------"
+echo "----------------------------------------------------"
 echo "!! Welcome to Ubuntu-Bootstrap !!"
 echo "The following will be installed"
 echo "debs: $debs"
