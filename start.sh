@@ -82,7 +82,7 @@ echo "*****************************************************"
 echo "Installing flatpak applications"
 echo "*****************************************************"
 sudo apt -yq install flatpak
-sudo apt install gnome-software-plugin-flatpak
+sudo apt -yq install gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # bitwarden
