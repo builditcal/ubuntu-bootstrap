@@ -37,6 +37,9 @@ fi
 if [[ $neaten == "yes" ]]; then
   echo "=> the shell will also be neatened"
 fi
+if [[ $theme == "dark" ]]; then
+  echo "=> dark theme will be set"
+fi
 echo "----------------------------------------------------"
 
 
