@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.0.12
+VERSION=0.1.12
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
@@ -201,9 +201,10 @@ if [[ $theme == "dark" ]]; then
   mkdir -p $HOME/Pictures/Wallpapers
   wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/24.04/wallpapers/24.04/dark.jpg -O $HOME/Pictures/Wallpapers/dark.jpeg
   gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/Pictures/Wallpapers/dark.jpeg
-  gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark 
-  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
+  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+  gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
+  gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 fi
 
 sudo apt autoremove -yq

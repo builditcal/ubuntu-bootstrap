@@ -7,5 +7,6 @@ curl -o- https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/head
     --flatpaks "bitwarden,cura" \
     --debloat yes \
     --neaten yes \
-    --apt_install "htop,aria2"
+    --apt_install "htop,aria2" \
+    --theme dark
 ```
