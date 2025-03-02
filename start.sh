@@ -21,7 +21,12 @@ echo "!! Welcome to Ubuntu-Bootstrap !!"
 echo "The following will be installed"
 echo "debs: $debs"
 echo "flatpaks: $flatpaks"
-echo "we will also be removing snap packages and snapd"
+if [ -n "$debloat" ]; then
+  echo "snap packages will be removed"
+fi
+if [ -n "$neaten" ]; then
+  echo "the shell will also be neatened"
+fi
 echo "----------------------------------------------------"
 
 
