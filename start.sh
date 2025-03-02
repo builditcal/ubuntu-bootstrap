@@ -190,11 +190,16 @@ if [[ $neaten == "yes" ]]; then
 
   add_gnome_menu_folders "accessories" "🖊️ Accessories" "'org.gnome.font-viewer.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.eog.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Evince', 'org.gnome.Evince.desktop', 'org.gnome.Software.desktop'"
 
-  add_gnome_menu_folders "accessories" "⚒️ Dev" "'code.desktop', 'dbeaver-ce.desktop', 'com.ultimaker.cura.desktop'"
+  add_gnome_menu_folders "dev" "⚒️ Dev" "'code.desktop', 'dbeaver-ce.desktop', 'com.ultimaker.cura.desktop'"
 
-  gsettings set org.gnome.desktop.app-folders folder-children "[ 'accessories', 'system' ]"
+  gsettings set org.gnome.desktop.app-folders folder-children "[ 'accessories', 'system', 'dev' ]"
 
 fi
 
 sudo apt autoremove -yq
 rm -rf $DOWNLOAD_PATH
+
+
+echo "*****************************************************"
+echo "Complete, please logout/reboot to see flatpaks"
+echo "*****************************************************"
