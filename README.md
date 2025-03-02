@@ -4,7 +4,7 @@
 
 ## Ubuntu 24.04 Eg:
 ```bash
-curl -o- https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/24.04/24.04.sh | bash -s -- \
+curl -o- https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/24.04.sh | bash -s -- \
     --debs "vscode,chrome,docker,dbeaver" \
     --flatpaks "bitwarden,cura" \
     --debloat yes \

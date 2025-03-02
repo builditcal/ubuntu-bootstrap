@@ -200,9 +200,9 @@ if [[ $neaten == "yes" ]]; then
 fi
 
 if [[ $theme == "dark" ]]; then
-  # wallpaper origin: https://unsplash.com/photos/photography-of-ocean-shore-Jbu8x2RtS_c
   mkdir -p $HOME/Pictures/Wallpapers
-  wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/24.04/wallpapers/24.04/dark.jpg -O $HOME/Pictures/Wallpapers/dark.jpeg
+  # wallpaper credit : https://wallhaven.cc/w/g82vvq
+  wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/wallpapers/24.04/dark.jpg -O $HOME/Pictures/Wallpapers/dark.jpeg
   gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/Pictures/Wallpapers/dark.jpeg
 
   gsettings set org.gnome.desktop.interface color-scheme prefer-dark
