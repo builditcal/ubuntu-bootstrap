@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.0.4
+VERSION=0.0.5
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
@@ -181,7 +181,7 @@ if [[ $neaten == "yes" ]]; then
     apps=$3
 
     gsettings set org.gnome.desktop.app-folders folder-children "[ '$folder_name' ]"
-    gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/$folder_name/name "$readable_name"
+    gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/$folder_name/ name "$readable_name"
     gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/$folder_name/ apps "[ $apps ]"
 
   }
