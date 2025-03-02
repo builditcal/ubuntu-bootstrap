@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.0.2
+VERSION=0.0.3
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
@@ -19,10 +19,18 @@ done
 clear 
 
 echo "----------------------------------------------------"
-echo "Welcome to Ubuntu-Bootstrap $OS_VERSION ($VERSION)"
+echo "Welcome to Ubuntu-Bootstrap $OS_VERSION (v$VERSION)"
 echo "=> The following will be installed:"
-echo " ->debs: $debs"
-echo " ->flatpaks: $flatpaks"
+echo " -> debs: $debs"
+echo " -> flatpaks: $flatpaks"
+if [ -n "$apt_install" ]; then
+  echo "=> the following apt installs will be invoked"
+  echo " -> $apt_install"
+fi
+if [ -n "$apt_remove" ]; then
+  echo "=> the following apt remove will be invoked"
+  echo " -> $apt_remove"
+fi
 if [ -n "$debloat" ]; then
   echo "=> snap packages will be removed"
 fi
@@ -33,10 +41,25 @@ echo "----------------------------------------------------"
 
 
 echo "*****************************************************"
-echo "Upgrading and Updating"
+echo "Upgrading and Updating Installing and Removing"
 echo "*****************************************************"
 sudo apt update
 sudo apt upgrade -yq
+
+if [ -n "$apt_install" ]; then
+  IFS=',' read -ra app_list <<< "$apt_install"
+  for app in "${app_list[@]}"; do
+      sudo apt install -yq $app
+  done
+fi
+
+if [ -n "$apt_remove" ]; then
+  IFS=',' read -ra app_list <<< "$apt_remove"
+  for app in "${app_list[@]}"; do
+      sudo apt remove -yq $app
+  done
+fi
+
 
 if [ -n "$debloat" ]; then
   echo "*****************************************************"
@@ -166,4 +189,4 @@ if [ -n "$neaten" ]; then
   add_gnome_menu_folders "system", "🖥️ System", "'org.gnome.Logs.desktop', 'org.gnome.PowerStats.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.Terminal.desktop'"
 fi
 
-
+sudo apt autoremove -yq
