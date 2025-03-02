@@ -198,7 +198,8 @@ fi
 
 if [[ $theme == "dark" ]]; then
   # wallpaper origin: https://unsplash.com/photos/photography-of-ocean-shore-Jbu8x2RtS_c
-  wget -x  -O $HOME/Pictures/Wallpapers/dark.jpeg
+  wget -x https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/24.04/wallpapers/24.04/dark.jpg -O $HOME/Pictures/Wallpapers/dark.jpeg
+  gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/Pictures/Wallpapers/dark.jpeg
   gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark 
   gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
