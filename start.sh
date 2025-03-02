@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.0.9
+VERSION=0.0.10
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
@@ -86,6 +86,7 @@ if [[ $debloat == "yes" ]]; then
   sudo apt-mark hold snapd
   sudo rm -rf /snap
   sudo rm -rf $HOME/snap
+  sudo rm -rf /root/snap
 
   echo "*****************************************************"
   echo "Snaps removed"
@@ -153,18 +154,19 @@ echo "*****************************************************"
 if [ -n "$flatpaks" ]; then
   sudo apt -yq install flatpak
   sudo apt -yq install gnome-software-plugin-flatpak
-  flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+  sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
   # FLATPAK INSTALL: bitwarden
   if [[ $flatpaks =~ "bitwarden" ]]; then
-    sudo flatpak install -y flathub com.bitwarden.desktop
+    sudo flatpak install --noninteractive -y flathub com.bitwarden.desktop
   fi
 
   # FLATPAK INSTALL: cura
   if [[ $flatpaks =~ "cura" ]]; then
-    sudo flatpak install -y flathub com.ultimaker.cura
+    sudo flatpak install --noninteractive -y flathub com.ultimaker.cura
   fi
 fi
+
 
 if [[ $neaten == "yes" ]]; then
   echo "*****************************************************"
@@ -172,7 +174,7 @@ if [[ $neaten == "yes" ]]; then
   echo "*****************************************************"
 
 
-  gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', ]"
+  gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop' ]"
 
   add_gnome_menu_folders() {
     folder_name=$1
