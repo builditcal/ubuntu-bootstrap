@@ -174,7 +174,7 @@ if [[ $neaten == "yes" ]]; then
   echo "*****************************************************"
 
 
-  gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop' ]"
+  gsettings set org.gnome.shell favorite-apps "[ 'google-chrome.desktop', 'com.bitwarden.desktop.desktop', 'org.gnome.Nautilus.desktop' ]"
 
   add_gnome_menu_folders() {
     folder_name=$1
