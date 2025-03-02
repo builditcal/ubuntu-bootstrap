@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.0.5
+VERSION=0.0.6
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
@@ -165,7 +165,6 @@ if [ -n "$flatpaks" ]; then
     sudo flatpak install -y flathub com.ultimaker.cura
   fi
 fi
-rm -rf $DOWNLOAD_PATH
 
 if [[ $neaten == "yes" ]]; then
   echo "*****************************************************"
@@ -186,7 +185,10 @@ if [[ $neaten == "yes" ]]; then
 
   }
 
-  add_gnome_menu_folders "system", "🖥️ System", "'org.gnome.Logs.desktop', 'org.gnome.PowerStats.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.Terminal.desktop'"
+  add_gnome_menu_folders "system" "🖥️ System" "'org.gnome.Logs.desktop', 'org.gnome.PowerStats.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Tecla.desktop', 'org.gnome.baobab.desktop', org.gnome.seahorse.Application.desktop"
+
+  add_gnome_menu_folders "accessories" "🖊️ Accessories" "'org.gnome.font-viewer.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.eog.desktop'"
 fi
 
 sudo apt autoremove -yq
+rm -rf $DOWNLOAD_PATH
