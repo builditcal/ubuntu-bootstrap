@@ -196,6 +196,14 @@ if [[ $neaten == "yes" ]]; then
 
 fi
 
+if [[ $theme == "dark" ]]; then
+  # wallpaper origin: https://unsplash.com/photos/photography-of-ocean-shore-Jbu8x2RtS_c
+  wget -x  -O $HOME/Pictures/Wallpapers/dark.jpeg
+  gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark 
+  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+
+fi
+
 sudo apt autoremove -yq
 rm -rf $DOWNLOAD_PATH
 
