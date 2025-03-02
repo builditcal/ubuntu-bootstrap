@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.0.3
+VERSION=0.0.4
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
@@ -31,10 +31,10 @@ if [ -n "$apt_remove" ]; then
   echo "=> the following apt remove will be invoked"
   echo " -> $apt_remove"
 fi
-if [ -n "$debloat" ]; then
+if [[ $debloat == "yes" ]]; then
   echo "=> snap packages will be removed"
 fi
-if [ -n "$neaten" ]; then
+if [[ $neaten == "yes" ]]; then
   echo "=> the shell will also be neatened"
 fi
 echo "----------------------------------------------------"
@@ -61,7 +61,7 @@ if [ -n "$apt_remove" ]; then
 fi
 
 
-if [ -n "$debloat" ]; then
+if [[ $debloat == "yes" ]]; then
   echo "*****************************************************"
   echo "Debloating"
   echo "*****************************************************"
@@ -167,7 +167,7 @@ if [ -n "$flatpaks" ]; then
 fi
 rm -rf $DOWNLOAD_PATH
 
-if [ -n "$neaten" ]; then
+if [[ $neaten == "yes" ]]; then
   echo "*****************************************************"
   echo "Neatening up the shell"
   echo "*****************************************************"
