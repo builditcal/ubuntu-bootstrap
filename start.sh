@@ -31,31 +31,41 @@ echo "*****************************************************"
 sudo apt update
 sudo apt upgrade -yq
 
+if [ -n "$debloat" ]; then
+  echo "*****************************************************"
+  echo "Debloating"
+  echo "*****************************************************"
 
-echo "*****************************************************"
-echo "Removing Snaps and snapd"
-echo "*****************************************************"
+  echo "*****************************************************"
+  echo "Removing Snaps and snapd"
+  echo "*****************************************************"
 
-MAX_TRIES=30
+  MAX_TRIES=30
 
-for try in $(seq 1 $MAX_TRIES); do
-  INSTALLED_SNAPS=$(snap list 2> /dev/null | grep -c  ^Name || true)
-  if (( $INSTALLED_SNAPS == 0 )); then
-    echo "all snaps removed"
-  fi
-  echo "Attempt $try of $MAX_TRIES to remove $INSTALLED_SNAPS snaps."
+  for try in $(seq 1 $MAX_TRIES); do
+    INSTALLED_SNAPS=$(snap list 2> /dev/null | grep -c  ^Name || true)
+    if (( $INSTALLED_SNAPS == 0 )); then
+      echo "all snaps removed"
+    fi
+    echo "Attempt $try of $MAX_TRIES to remove $INSTALLED_SNAPS snaps."
 
-  snap list 2> /dev/null | grep -v ^Name |  awk '{ print $1 }'  | xargs -r -n1  sudo snap remove || true
-done
+    snap list 2> /dev/null | grep -v ^Name |  awk '{ print $1 }'  | xargs -r -n1  sudo snap remove || true
+  done
 
-sudo apt autoremove -yq --purge snapd
-sudo apt-mark hold snapd
-sudo rm -rf /snap
-sudo rm -rf $HOME/snap
+  sudo apt autoremove -yq --purge snapd
+  sudo apt-mark hold snapd
+  sudo rm -rf /snap
+  sudo rm -rf $HOME/snap
 
-echo "*****************************************************"
-echo "Snaps removed"
-echo "*****************************************************"
+  echo "*****************************************************"
+  echo "Snaps removed"
+  echo "*****************************************************"
+
+  sudo apt remove gnome-user-docs
+
+fi
+
+
 
 
 echo "*****************************************************"
@@ -128,3 +138,27 @@ if [ -n "$flatpaks" ]; then
   fi
 fi
 rm -rf $DOWNLOAD_PATH
+
+if [ -n "$neaten" ]; then
+  echo "*****************************************************"
+  echo "Neatening up the shell"
+  echo "*****************************************************"
+
+
+  gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop']"
+
+  add_gnome_menu_folders() {
+    folder_name=$1
+    readable_name=$2
+    apps=$3
+
+    gsettings set org.gnome.desktop.app-folders folder-children "[ '$folder_name' ]"
+    gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/$folder_name/name "$readable_name"
+    gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/$folder_name/ apps "[ $apps ]"
+
+  }
+
+  add_gnome_menu_folders "system", "🖥️ System", "'org.gnome.Logs.desktop', 'org.gnome.PowerStats.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.Terminal.desktop'"
+fi
+
+
