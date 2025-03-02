@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.0.1
+VERSION=0.0.2
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
@@ -19,15 +19,15 @@ done
 clear 
 
 echo "----------------------------------------------------"
-echo "!! Welcome to Ubuntu-Bootstrap $OS_VERSION ($VERSION)!!"
-echo "The following will be installed"
-echo "debs: $debs"
-echo "flatpaks: $flatpaks"
+echo "Welcome to Ubuntu-Bootstrap $OS_VERSION ($VERSION)"
+echo "=> The following will be installed:"
+echo " ->debs: $debs"
+echo " ->flatpaks: $flatpaks"
 if [ -n "$debloat" ]; then
-  echo "snap packages will be removed"
+  echo "=> snap packages will be removed"
 fi
 if [ -n "$neaten" ]; then
-  echo "the shell will also be neatened"
+  echo "=> the shell will also be neatened"
 fi
 echo "----------------------------------------------------"
 
@@ -71,8 +71,6 @@ if [ -n "$debloat" ]; then
   sudo apt -yq remove gnome-user-docs
 
 fi
-
-
 
 
 echo "*****************************************************"
