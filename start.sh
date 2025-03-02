@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.0.6
+VERSION=0.0.7
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
