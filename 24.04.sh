@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.1.16
+VERSION=0.1.17
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
@@ -24,11 +24,11 @@ echo "=> The following will be installed:"
 echo " -> debs: $debs"
 echo " -> flatpaks: $flatpaks"
 if [ -n "$apt_install" ]; then
-  echo "=> the following apt installs will be invoked"
+  echo "=> the following apt install(s) will be invoked"
   echo " -> $apt_install"
 fi
 if [ -n "$apt_remove" ]; then
-  echo "=> the following apt remove will be invoked"
+  echo "=> the following apt remove(s) will be invoked"
   echo " -> $apt_remove"
 fi
 if [[ $debloat == "yes" ]]; then
@@ -159,15 +159,11 @@ if [ -n "$flatpaks" ]; then
   sudo apt -yq install gnome-software-plugin-flatpak
   sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-  # FLATPAK INSTALL: bitwarden
-  if [[ $flatpaks =~ "bitwarden" ]]; then
-    sudo flatpak install --noninteractive -y flathub com.bitwarden.desktop
-  fi
 
-  # FLATPAK INSTALL: cura
-  if [[ $flatpaks =~ "cura" ]]; then
-    sudo flatpak install --noninteractive -y flathub com.ultimaker.cura
-  fi
+  IFS=',' read -ra app_list <<< "$flatpaks"
+  for app in "${app_list[@]}"; do
+      sudo flatpak install --noninteractive -y $app
+  done
 fi
 
 
