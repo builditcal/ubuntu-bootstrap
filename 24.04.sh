@@ -211,10 +211,10 @@ if [[ $theme == "dark" ]]; then
   gsettings set org.gnome.desktop.interface show-battery-percentage true
   gsettings set org.gnome.desktop.interface enable-hot-corners true
 
-  wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/fonts/fonts/jetbrains-fonts.tar -O $DOWNLOAD_PATH/jetbrains-fonts.tar
+  wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/fonts/jetbrains-fonts.tar -O $DOWNLOAD_PATH/jetbrains-fonts.tar
   tar-xvzf $DOWNLOAD_PATH/jetbrains-fonts.tar -O $DOWNLOAD_PATH
+  sudo cp -r $DOWNLOAD_PATH/jetbrains-fonts/ /usr/share/fonts/truetype/
   fc-cache -f
-
 fi
 
 sudo apt autoremove -yq
