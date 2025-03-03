@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.1.12
+VERSION=0.1.14
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
@@ -212,7 +212,7 @@ if [[ $theme == "dark" ]]; then
   gsettings set org.gnome.desktop.interface enable-hot-corners true
 
   wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/fonts/jetbrains-fonts.tar -O $DOWNLOAD_PATH/jetbrains-fonts.tar
-  tar-xvzf $DOWNLOAD_PATH/jetbrains-fonts.tar -O $DOWNLOAD_PATH
+  tar -xvzf $DOWNLOAD_PATH/jetbrains-fonts.tar -O $DOWNLOAD_PATH
   sudo cp -r $DOWNLOAD_PATH/jetbrains-fonts/ /usr/share/fonts/truetype/
   fc-cache -f
 fi
