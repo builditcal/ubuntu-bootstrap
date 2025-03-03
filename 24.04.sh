@@ -3,7 +3,7 @@
 # Global Vars
 DOWNLOAD_PATH=$HOME/Downloads/tmp
 OS_VERSION=22.04
-VERSION=0.1.15
+VERSION=0.1.16
 
 # Fetch all the named args
 while [ $# -gt 0 ]; do
@@ -205,15 +205,17 @@ if [[ $theme == "dark" ]]; then
   wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/wallpapers/24.04/dark.jpg -O $HOME/Pictures/Wallpapers/dark.jpeg
   gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/Pictures/Wallpapers/dark.jpeg
 
+  wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/fonts/jetbrains-fonts.tar -O $DOWNLOAD_PATH/jetbrains-fonts.tar
+  sudo tar -xf $DOWNLOAD_PATH/jetbrains-fonts.tar -C /usr/share/fonts/truetype/ --wildcards "*.ttf"
+  fc-cache -f
+
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
   gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
   gsettings set org.gnome.desktop.interface show-battery-percentage true
   gsettings set org.gnome.desktop.interface enable-hot-corners true
+  gsettings set org.gnome.desktop.interface monospace-font-name 'Jetbrains Mono 13'
 
-  wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/fonts/jetbrains-fonts.tar -O $DOWNLOAD_PATH/jetbrains-fonts.tar
-  sudo tar -xf $DOWNLOAD_PATH/jetbrains-fonts.tar -C /usr/share/fonts/truetype/ --wildcards "*.ttf"
-  fc-cache -f
 fi
 
 sudo apt autoremove -yq
