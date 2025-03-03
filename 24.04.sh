@@ -212,8 +212,7 @@ if [[ $theme == "dark" ]]; then
   gsettings set org.gnome.desktop.interface enable-hot-corners true
 
   wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/fonts/jetbrains-fonts.tar -O $DOWNLOAD_PATH/jetbrains-fonts.tar
-  tar -xvzf $DOWNLOAD_PATH/jetbrains-fonts.tar -O $DOWNLOAD_PATH
-  sudo cp -r $DOWNLOAD_PATH/jetbrains-fonts/ /usr/share/fonts/truetype/
+  sudo tar -xf $DOWNLOAD_PATH/jetbrains-fonts.tar -C /usr/share/fonts/truetype/ --wildcards "*.ttf"
   fc-cache -f
 fi
 
