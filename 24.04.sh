@@ -205,9 +205,16 @@ if [[ $theme == "dark" ]]; then
   wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/wallpapers/24.04/dark.jpg -O $HOME/Pictures/Wallpapers/dark.jpeg
   gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/Pictures/Wallpapers/dark.jpeg
 
-  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
   gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
+  gsettings set org.gnome.desktop.interface show-battery-percentage true
+  gsettings set org.gnome.desktop.interface enable-hot-corners true
+
+  wget https://raw.githubusercontent.com/builditcal/ubuntu-bootstrap/refs/heads/main/fonts/fonts/jetbrains-fonts.tar -O $DOWNLOAD_PATH/jetbrains-fonts.tar
+  tar-xvzf $DOWNLOAD_PATH/jetbrains-fonts.tar -O $DOWNLOAD_PATH
+  fc-cache -f
+
 fi
 
 sudo apt autoremove -yq
